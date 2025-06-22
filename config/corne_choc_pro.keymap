@@ -22,15 +22,15 @@
         default_layer {
             display-name = "QWERTY";
             // --------------------------------------------------------------------------------
-            // |  TAB |  Q  |  W  |  E  |  R  |  T  |  MUTE |  PP   |  Y  |  U   |  I  |  O  |  P  | BSPC |
-            // | CTRL |  A  |  S  |  D  |  F  |  G  |  LALT |  RALT |  H  |  J   |  K  |  L  |  ;  |  '   |
-            // | SHFT |  Z  |  X  |  C  |  V  |  B  |               |  N  |  M   |  ,  |  .  |  /  | ESC  |
-            //                    | GUI | LWR | SPC |               | ENT | RSE  | ALT |
+            // |  `   |  Q  |  W  |  E  |  R  |  T  |  MUTE |  PP   |  Y  |  U  |  I  |  O  |  P  | BSPC |
+            // | TAB  |  A  |  S  |  D  |  F  |  G  |  LALT |  RALT |  H  |  J  |  K  |  L  |  ;  |  '   |
+            // | SHFT |  Z  |  X  |  C  |  V  |  B  |               |  N  |  M  |  ,  |  .  |  /  | SHFT |
+            //                    | CTL | ENT | SPC |               | SPC | RET | CTL |
             bindings = <
-                &kp TAB   &kp Q &kp W &kp E &kp R &kp T &kp C_MUTE &kp C_PP &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-                &kp LCTRL &kp A &kp S &kp D &kp F &kp G &kp LALT   &kp RALT &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-                &kp LSHFT &kp Z &kp X &kp C &kp V &kp B                     &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-                                      &kp LGUI &mo 1 &kp SPACE              &kp RET &mo 2 &kp RALT
+                &lt 2 GRAVE     &kp Q &kp W &kp E &kp R &kp T &kp C_MUTE &kp C_PP &kp Y &kp U  &kp I   &kp O    &kp P     &lt 2 BSPC
+                &lt 1 TAB       &kp A &kp S &kp D &kp F &kp G &kp LALT   &kp RALT &kp H &kp J  &kp K   &kp L    &kp UP    &lt 1 SQT
+                &mt LSHFT CAPS  &kp Z &kp X &kp C &kp V &kp B                   &lt 3 N &kp M  &kp DOT &kp LEFT &kp DOWN  &mt RSHIFT RIGHT
+                                &kp LCTRL &mt LALT RET &mt LCMD SPACE      &mt RCMD SPACE &mt RALT RET &kp RCTRL
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN &inc_dec_kp C_PREV C_NEXT &inc_dec_kp C_BRI_DN C_BRI_UP>;
         };
@@ -38,15 +38,15 @@
         lower_layer {
             display-name = "NUMBER";
             // -----------------------------------------------------------------------------------------
-            // |  TAB |  1  |  2  |  3  |  4  |  5    |  LCTRL | RCTRL |  6  |  7  |  8  |  9  |  0  | BSPC |
-            // | CTRL | BT1 | BT2 | BT3 | BT4 | BT5   |  LALT  | RALT  | LFT | DWN |  UP | RGT |     |      |
-            // | SHFT | BTCR| RGB | RST | BOOT| Unlock|        |       |     |     |     |     |     |      |
-            //                    | GUI |     | SPC   |        | ENT   |     | ALT |
+            // |     |  !  |  @  |  #  |  $  |  %  |     |     |  ^  |  &  |  *  |  (  |  )  |     |
+            // |     |  ;  |  '  |  ,  |  .  |  /  |     |     |  -  |  +  |  \  |  [  |  ]  |     |
+            // |     |  :  |  "  |  <  |  >  |  ?  |           |  _  |  =  | "|" |  {  |  }  |     |
+            //                   |     |     |     |           |     |     |     |
             bindings = <
-                &kp TAB   &kp N1       &kp N2          &kp N3       &kp N4       &kp N5       &kp LCTRL &kp RCTRL &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-                &kp LCTRL &bt BT_SEL 0 &bt BT_SEL 1    &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &kp LALT  &kp RALT  &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-                &kp LSHFT &bt BT_CLR   &rgb_ug RGB_TOG &sys_reset   &bootloader  &studio_unlock                   &trans   &trans   &trans &trans    &trans &trans
-                                                       &kp LGUI     &trans       &kp SPACE                        &kp LGUI &trans   &kp SPACE
+                &kp ESC &kp EXCL   &kp AT   &kp HASH   &kp DLLR   &kp PRCNT &trans &trans &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &trans
+                &trans  &kp SEMI   &kp SQT  &kp COMMA  &kp PERIOD &kp FSLH  &trans &trans &kp MINUS &kp PLUS  &kp BSLH  &kp LBKT &kp RBKT &trans
+                &trans  &kp COLON  &kp DQT  &kp LT     &kp GT     &kp QMARK               &kp UNDER &kp EQUAL &kp PIPE  &kp LBRC &kp RBRC &kp
+                                            &trans     &trans     &trans                  &trans    &trans    &trans
             >;
         };
 
@@ -57,21 +57,33 @@
             // | CTRL |     |     |     |     |     |  LALT | RALT  |  -  |  =  |  [  |  ]  |  \  |  `   |
             // | SHFT |     |     |     |     |     |               |  _  |  +  |  {  |  }  | "|" |  ~   |
             //                    | GUI |     | SPC |               | ENT |     | ALT |
+            // Suggestions
+            // &bt BT_SEL 1, 2 and 3: left half, col 6, top, middle, bottom
+            // function keys to layer 4, activate with BS hold,
+            // key mappings left half only f1 f2 f3 f4 f5 f6
+            //                             f7 f8 f9 f10 f12
+            //                             &trns &trns &rgb_ug RGB_TOG &sys_reset &bootloader &studio_unlock
+
             bindings = <
-                &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT &kp LCTRL &kp RCTRL &kp CARET &kp AMPS &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-                &kp LCTRL &trans   &trans &trans   &trans   &trans    &kp LALT  &kp RALT  &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &kp BSLH &kp GRAVE
-                &kp LSHFT &trans   &trans &trans   &trans   &trans                        &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &kp PIPE &kp TILDE
-                                          &kp LGUI &trans   &kp SPACE                     &kp RET   &trans    &kp RALT
+                &trans  &kp F1  &kp F2  &kp F3  &kp F4  &trans  &trans  &trans  &kp HOME  &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp PG_UP &trans
+                &trans  &kp F5  &kp F6  &kp F7  &kp F8  &trans  &trans  &trans  &kp END   &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp PG_DN &trans
+                &trans  &kp F9  &kp F10 &kp F11 &kp F12 &trans                  &kp KP_N0 &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp COMMA &kp PERIOD
+                                        &trans  &trans  &trans                  &trans  &trans  &trans
             >;
         };
 
         extra_layer_1 {
             display-name = "EXTRA 1";
+            // -----------------------------------------------------------------------------------------
+            // |  TAB |  1  |  2  |  3  |  4  |  5    |  LCTRL | RCTRL |  6  |  7  |  8  |  9  |  0  | BSPC |
+            // | CTRL | BT1 | BT2 | BT3 | BT4 | BT5   |  LALT  | RALT  | LFT | DWN |  UP | RGT |     |      |
+            // | SHFT | BTCR| RGB | RST | BOOT| Unlock|        |       |     |     |     |     |     |      |
+            //                    | GUI |     | SPC   |        | ENT   |     | ALT |
             bindings = <
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans
-                                     &trans &trans &trans               &trans &trans &trans       
+                &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans &trans  &trans  &trans  &trans  &trans  &trans
+                &trans &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                &trans &bt BT_CLR  &rgb_ug RGB_TOG &sys_reset   &bootloader  &studio_unlock                    &trans  &trans  &trans  &trans  &trans  &trans
+                                                       &trans     &trans       &trans                          &trans  &trans  &trans
             >;
         };
 
@@ -81,7 +93,7 @@
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans
-                                     &trans &trans &trans               &trans &trans &trans       
+                                     &trans &trans &trans               &trans &trans &trans
             >;
         };
 
@@ -91,7 +103,7 @@
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans
-                                     &trans &trans &trans               &trans &trans &trans       
+                                     &trans &trans &trans               &trans &trans &trans
             >;
         };
 
@@ -101,7 +113,7 @@
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans
-                                     &trans &trans &trans               &trans &trans &trans       
+                                     &trans &trans &trans               &trans &trans &trans
             >;
         };
 
@@ -111,7 +123,7 @@
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans
-                                     &trans &trans &trans               &trans &trans &trans       
+                                     &trans &trans &trans               &trans &trans &trans
             >;
         };
 
@@ -121,7 +133,7 @@
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans
-                                     &trans &trans &trans               &trans &trans &trans       
+                                     &trans &trans &trans               &trans &trans &trans
             >;
         };
     };
